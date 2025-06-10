@@ -8,7 +8,7 @@ export async function POST(request) {
     try {
         const {userId} = getAuth(request)
         const {address, items} = await request.json();
-        if(!address || items.lenth === 0) {
+        if(!address || items.length === 0) {
             return NextResponse.json({success: false, message:'Invalid data' })
         }
 
@@ -21,7 +21,7 @@ export async function POST(request) {
 
         await inngest.send({
             name: 'order/created',
-            date: {
+            data: {
                 userId,
                 address,
                 items,
