@@ -1,4 +1,4 @@
-import logo from "./logo.svg";
+import logo from "./logo.png";
 import search_icon from "./search_icon.svg";
 import user_icon from "./user_icon.svg";
 import cart_icon from "./cart_icon.svg";
@@ -47,7 +47,25 @@ import product_details_page_apple_earphone_image3 from "./product_details_page_a
 import product_details_page_apple_earphone_image4 from "./product_details_page_apple_earphone_image4.png";
 import product_details_page_apple_earphone_image5 from "./product_details_page_apple_earphone_image5.png";
 
+import model1 from "./model1.png"
+import model2 from "./model2.png"
+import model3 from "./model3.png"
+import model4 from "./model4.png"
+import model5 from "./model5.png"
+import model6 from "./model6.png"
+import model7 from "./model7.png"
+import model8 from "./model8.png"
+
 export const assets = {
+  model1,
+  model2,
+  model3,
+  model4,
+  model5,
+  model6,
+  model7,
+  model8,
+
   logo,
   search_icon,
   user_icon,

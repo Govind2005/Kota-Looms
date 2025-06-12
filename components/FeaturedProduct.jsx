@@ -5,21 +5,21 @@ import Image from "next/image";
 const products = [
   {
     id: 1,
-    image: assets.girl_with_headphone_image,
-    title: "Unparalleled Sound",
-    description: "Experience crystal-clear audio with premium headphones.",
+    image: assets.model6,
+    title: "Superb Sarees",
+    description: "Experience the Indian wibe with premium Sarees.",
   },
   {
     id: 2,
-    image: assets.girl_with_earphone_image,
-    title: "Stay Connected",
-    description: "Compact and stylish earphones for every occasion.",
+    image: assets.model7,
+    title: "Stay Glowing",
+    description: "Stylish Lehenga for every occasion.",
   },
   {
     id: 3,
-    image: assets.boy_with_laptop_image,
-    title: "Power in Every Pixel",
-    description: "Shop the latest laptops for work, gaming, and more.",
+    image: assets.model8,
+    title: "Power in Every Suit",
+    description: "Shop the latest trends for work, weddings, and more.",
   },
 ];
 

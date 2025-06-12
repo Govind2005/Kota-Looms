@@ -13,7 +13,7 @@ const AddProduct = () => {
   const [files, setFiles] = useState([]);
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
-  const [category, setCategory] = useState('Earphone');
+  const [category, setCategory] = useState('Saree');
   const [price, setPrice] = useState('');
   const [offerPrice, setOfferPrice] = useState('');
 
@@ -24,7 +24,7 @@ const AddProduct = () => {
 
     formData.append('name', name)
     formData.append('description', description)
-    formData.append('category', description)
+    formData.append('category', category)
     formData.append('price', price)
     formData.append('offerPrice', offerPrice)
 
@@ -40,7 +40,7 @@ const AddProduct = () => {
       toast.success(data.message)
       setName('')
       setDescription('')
-      setCategory('')
+      setCategory('Saree')
       setPrice('')
       setOfferPrice('')
       setFiles([])
@@ -125,13 +125,8 @@ const AddProduct = () => {
               onChange={(e) => setCategory(e.target.value)}
               defaultValue={category}
             >
-              <option value="Earphone">Earphone</option>
-              <option value="Headphone">Headphone</option>
-              <option value="Watch">Watch</option>
-              <option value="Smartphone">Smartphone</option>
-              <option value="Laptop">Laptop</option>
-              <option value="Camera">Camera</option>
-              <option value="Accessories">Accessories</option>
+              <option value="Saree">Saree</option>
+              <option value="Kurta">Kurta</option>
             </select>
           </div>
           <div className="flex flex-col gap-1 w-32">
