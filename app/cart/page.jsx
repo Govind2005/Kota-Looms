@@ -6,7 +6,7 @@ import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import { useAppContext } from "@/context/AppContext";
 
-import { SignedIn, SignedOut, SignInButton, SignUpButton, useClerk } from "@clerk/nextjs";
+import { SignedIn, SignedOut, useClerk } from "@clerk/nextjs";
 
 const Cart = () => {
 
@@ -15,13 +15,16 @@ const Cart = () => {
   const {openSignIn} = useClerk();
 
   useEffect(() => {
-    openSignIn();
+    try {
+      openSignIn();
+    } catch (error) {
+
+    }
   },[openSignIn])
 
   return (
     <>  
     <SignedOut>
-    {/* <SignUpButton /> */}
     </SignedOut>
     <SignedIn>
       <Navbar />
