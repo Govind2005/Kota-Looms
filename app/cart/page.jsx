@@ -1,17 +1,29 @@
 'use client'
-import React from "react";
+import React, { useEffect } from "react";
 import { assets } from "@/assets/assets";
 import OrderSummary from "@/components/OrderSummary";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import { useAppContext } from "@/context/AppContext";
 
+import { SignedIn, SignedOut, SignInButton, SignUpButton, useClerk } from "@clerk/nextjs";
+
 const Cart = () => {
 
   const { products, router, cartItems, addToCart, updateCartQuantity, getCartCount } = useAppContext();
 
+  const {openSignIn} = useClerk();
+
+  useEffect(() => {
+    openSignIn();
+  },[openSignIn])
+
   return (
-    <>
+    <>  
+    <SignedOut>
+    {/* <SignUpButton /> */}
+    </SignedOut>
+    <SignedIn>
       <Navbar />
       <div className="flex flex-col md:flex-row gap-10 px-6 md:px-16 lg:px-32 pt-14 mb-20">
         <div className="flex-1">
@@ -61,7 +73,7 @@ const Cart = () => {
                           <button
                             className="md:hidden text-xs text-orange-600 mt-1"
                             onClick={() => updateCartQuantity(product._id, 0)}
-                          >
+                            >
                             Remove
                           </button>
                         </div>
@@ -70,7 +82,7 @@ const Cart = () => {
                           <button
                             className="text-xs text-orange-600 mt-1"
                             onClick={() => updateCartQuantity(product._id, 0)}
-                          >
+                            >
                             Remove
                           </button>
                         </div>
@@ -83,7 +95,7 @@ const Cart = () => {
                               src={assets.decrease_arrow}
                               alt="decrease_arrow"
                               className="w-4 h-4"
-                            />
+                              />
                           </button>
                           <input onChange={e => updateCartQuantity(product._id, Number(e.target.value))} type="number" value={cartItems[itemId]} className="w-8 border text-center appearance-none"></input>
                           <button onClick={() => addToCart(product._id)}>
@@ -91,7 +103,7 @@ const Cart = () => {
                               src={assets.increase_arrow}
                               alt="increase_arrow"
                               className="w-4 h-4"
-                            />
+                              />
                           </button>
                         </div>
                       </td>
@@ -107,12 +119,13 @@ const Cart = () => {
               className="group-hover:-translate-x-1 transition"
               src={assets.arrow_right_icon_colored}
               alt="arrow_right_icon_colored"
-            />
+              />
             Continue Shopping
           </button>
         </div>
         <OrderSummary />
       </div>
+              </SignedIn>
     </>
   );
 };
