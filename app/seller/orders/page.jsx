@@ -6,6 +6,7 @@ import { useAppContext } from "@/context/AppContext";
 import Footer from "@/components/seller/Footer";
 import Loading from "@/components/Loading";
 import axios from "axios";
+import { SignedIn, SignedOut, useClerk } from "@clerk/nextjs";
 
 const Orders = () => {
 
@@ -38,7 +39,23 @@ const Orders = () => {
         }
     }, [user]);
 
+    const RequireSignIn = () => {
+      const { openSignIn } = useClerk();
+  
+      useEffect(() => {
+        openSignIn();
+      }, [openSignIn]);
+  
+      return null;
+    };
+
+
     return (
+        <>
+        <SignedOut>
+            <RequireSignIn/>
+        </SignedOut>
+        <SignedIn>
         <div className="flex-1 h-screen overflow-scroll flex flex-col justify-between text-sm">
             {loading ? <Loading /> : <div className="md:p-10 p-4 space-y-5">
                 <h2 className="text-lg font-medium">Orders</h2>
@@ -83,6 +100,8 @@ const Orders = () => {
             </div>}
             <Footer />
         </div>
+        </SignedIn>
+        </>
     );
 };
 

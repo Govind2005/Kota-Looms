@@ -12,19 +12,20 @@ const Cart = () => {
 
   const { products, router, cartItems, addToCart, updateCartQuantity, getCartCount } = useAppContext();
 
-  const {openSignIn} = useClerk();
-
-  useEffect(() => {
-    try {
-      openSignIn();
-    } catch (error) {
-
-    }
-  },[openSignIn])
+  const RequireSignIn = () => {
+      const { openSignIn } = useClerk();
+  
+      useEffect(() => {
+        openSignIn();
+      }, [openSignIn]);
+  
+      return null;
+    };
 
   return (
     <>  
     <SignedOut>
+      <RequireSignIn/>
     </SignedOut>
     <SignedIn>
       <Navbar />

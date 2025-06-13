@@ -1,10 +1,11 @@
 'use client'
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { assets } from "@/assets/assets";
 import Image from "next/image";
 import { useAppContext } from "@/context/AppContext";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { SignedIn, SignedOut, useClerk } from "@clerk/nextjs";
 
 const AddProduct = () => {
 
@@ -53,10 +54,25 @@ const AddProduct = () => {
   }
   };
 
+  const RequireSignIn = () => {
+      const { openSignIn } = useClerk();
+  
+      useEffect(() => {
+        openSignIn();
+      }, [openSignIn]);
+  
+      return null;
+    };
+
   
 
   
   return (
+    <>
+    <SignedOut>
+      <RequireSignIn/>
+    </SignedOut>
+    <SignedIn>
     <div className="flex-1 min-h-screen flex flex-col justify-between">
       <form onSubmit={handleSubmit} className="md:p-10 p-4 space-y-5 max-w-lg">
         <div>
@@ -77,7 +93,7 @@ const AddProduct = () => {
                   alt=""
                   width={100}
                   height={100}
-                />
+                  />
               </label>
             ))}
 
@@ -95,13 +111,13 @@ const AddProduct = () => {
             onChange={(e) => setName(e.target.value)}
             value={name}
             required
-          />
+            />
         </div>
         <div className="flex flex-col gap-1 max-w-md">
           <label
             className="text-base font-medium"
             htmlFor="product-description"
-          >
+            >
             Product Description
           </label>
           <textarea
@@ -112,7 +128,7 @@ const AddProduct = () => {
             onChange={(e) => setDescription(e.target.value)}
             value={description}
             required
-          ></textarea>
+            ></textarea>
         </div>
         <div className="flex items-center gap-5 flex-wrap">
           <div className="flex flex-col gap-1 w-32">
@@ -124,7 +140,7 @@ const AddProduct = () => {
               className="outline-none md:py-2.5 py-2 px-3 rounded border border-gray-500/40"
               onChange={(e) => setCategory(e.target.value)}
               defaultValue={category}
-            >
+              >
               <option value="Saree">Saree</option>
               <option value="Kurta">Kurta</option>
             </select>
@@ -141,7 +157,7 @@ const AddProduct = () => {
               onChange={(e) => setPrice(e.target.value)}
               value={price}
               required
-            />
+              />
           </div>
           <div className="flex flex-col gap-1 w-32">
             <label className="text-base font-medium" htmlFor="offer-price">
@@ -155,15 +171,16 @@ const AddProduct = () => {
               onChange={(e) => setOfferPrice(e.target.value)}
               value={offerPrice}
               required
-            />
+              />
           </div>
         </div>
         <button type="submit" className="px-8 py-2.5 bg-orange-600 text-white font-medium rounded">
           ADD
         </button>
       </form>
-      {/* <Footer /> */}
     </div>
+    </SignedIn>
+              </>
   );
 };
 

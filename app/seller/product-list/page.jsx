@@ -7,6 +7,7 @@ import Footer from "@/components/seller/Footer";
 import Loading from "@/components/Loading";
 import toast from "react-hot-toast";
 import axios from "axios";
+import { SignedIn, SignedOut, useClerk } from "@clerk/nextjs";
 
 const ProductList = () => {
 
@@ -39,7 +40,22 @@ const ProductList = () => {
     }
   }, [user])
 
+  const RequireSignIn = () => {
+      const { openSignIn } = useClerk();
+  
+      useEffect(() => {
+        openSignIn();
+      }, [openSignIn]);
+  
+      return null;
+    };
+
   return (
+    <>
+    <SignedOut>
+      <RequireSignIn/>
+    </SignedOut>
+    <SignedIn>
     <div className="flex-1 min-h-screen flex flex-col justify-between">
       {loading ? <Loading /> : <div className="w-full md:p-10 p-4">
         <h2 className="pb-4 text-lg font-medium">All Product</h2>
@@ -92,6 +108,8 @@ const ProductList = () => {
       </div>}
       <Footer />
     </div>
+    </SignedIn>
+    </>
   );
 };
 
