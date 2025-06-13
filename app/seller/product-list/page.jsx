@@ -33,6 +33,31 @@ const ProductList = () => {
     }
   }
 
+  const handleDelete = async(id) => {
+    const confirmDelete = window.confirm("Are you sure you want to delete this product?");
+    if (!confirmDelete) return;
+
+    try {
+      const token = await getToken();
+      const { data } = await axios.delete('/api/product/delete', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      data: { id }  
+    });
+      if(data.success) {
+        toast.success("Product deleted");
+        setProducts((prev) => prev.filter((p) => p._id !== id));
+      }
+      else {
+        toast.error(data.message)
+      }
+    } catch (error) {
+      toast.error(error.message)
+    }
+
+  }
+
   useEffect(() => {
     if(user)
     {
@@ -99,6 +124,10 @@ const ProductList = () => {
                         alt="redirect_icon"
                       />
                     </button>
+                  </td>
+                  <td>
+                    <button className="px-3 py-1.5 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-red-500"
+ onClick={()=> handleDelete(product._id)}>Delete</button>
                   </td>
                 </tr>
               ))}
