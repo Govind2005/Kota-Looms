@@ -126,6 +126,15 @@ const ProductList = () => {
                     </button>
                   </td>
                   <td>
+                    <button
+                      onClick={() => router.push(`/seller/update/${product._id}`)}
+                      className="px-3 py-1.5 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    >
+    Edit
+  </button>
+
+                  </td>
+                  <td>
                     <button className="px-3 py-1.5 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-red-500"
  onClick={()=> handleDelete(product._id)}>Delete</button>
                   </td>
