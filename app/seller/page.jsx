@@ -142,7 +142,7 @@ const AddProduct = () => {
               defaultValue={category}
               >
               <option value="Saree">Saree</option>
-              <option value="Kurta">Kurta</option>
+              <option value="Suit">Suit</option>
             </select>
           </div>
           <div className="flex flex-col gap-1 w-32">
