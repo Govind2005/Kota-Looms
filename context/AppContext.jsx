@@ -55,7 +55,7 @@ export const AppContextProvider = (props) => {
         {
             toast.error(data.message)
         }
-        setUserData(userDummyData)
+        
         } catch (error) {
             toast.error(error.message)
         }
